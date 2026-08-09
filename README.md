@@ -105,7 +105,7 @@ pip install -e .
 ### Option 2: Install with pip (when published)
 
 ```bash
-pip install mfp-mcp
+pip install myfitnesspal-mcp-python
 ```
 
 > **Note**: Option 2 requires the package to be published to PyPI. For now, use Option 1.
@@ -116,7 +116,7 @@ After installation, verify the server can start:
 
 ```bash
 # With venv activated
-python -m mfp_mcp.server
+python -m mcp_mfp.server
 ```
 
 You should see the server waiting for input (it communicates via stdio). Press `Ctrl+C` to stop.
@@ -125,7 +125,7 @@ To test authentication (optional):
 
 ```bash
 MFP_USERNAME="your_email" MFP_PASSWORD="your_password" python -c "
-from mfp_mcp.server import get_mfp_client
+from mcp_mfp.server import get_mfp_client
 client = get_mfp_client()
 print('Authentication successful!')
 "
@@ -156,7 +156,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mfp_mcp.server"],
+      "args": ["-m", "mcp_mfp.server"],
       "env": {
         "MFP_USERNAME": "gAAAAAB...<encrypted_email>",
         "MFP_PASSWORD": "gAAAAAB...<encrypted_password>"
@@ -174,7 +174,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mfp_mcp.server"],
+      "args": ["-m", "mcp_mfp.server"],
       "env": {
         "MFP_USERNAME": "your_email@example.com",
         "MFP_PASSWORD": "your_password"
@@ -190,7 +190,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "C:\\Users\\YourName\\myfitnesspal-mcp-python\\venv\\Scripts\\python.exe",
-      "args": ["-m", "mfp_mcp.server"],
+      "args": ["-m", "mcp_mfp.server"],
       "env": {
         "MFP_USERNAME": "your_email@example.com",
         "MFP_PASSWORD": "your_password"
@@ -208,7 +208,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mfp_mcp.server"]
+      "args": ["-m", "mcp_mfp.server"]
     }
   }
 }
@@ -254,7 +254,7 @@ Instead of storing plain-text credentials, you can encrypt them using [Fernet sy
 
 > ⚠️ **Important**: For encryption to be meaningful, `MFP_SECRET_KEY` must be kept **outside** the Claude Desktop config file. The server resolves it in this order:
 > 1. `MFP_SECRET_KEY` environment variable (shell profile, not the Claude config)
-> 2. OS keychain — service `mfp-mcp`, account `MFP_SECRET_KEY` **(recommended)**
+> 2. OS keychain — service `myfitnesspal-mcp-python`, account `MFP_SECRET_KEY` **(recommended)**
 
 **Step 1 — Generate and store the key in one command:**
 
@@ -263,7 +263,7 @@ npm install
 npm run store-key
 ```
 
-`store-key` generates a Fernet-compatible key, stores it in the OS keychain (`mfp-mcp` / `MFP_SECRET_KEY`), and prints the key so you can use it in Step 2. See [Key Management CLI](#key-management-cli) for all available flags.
+`store-key` generates a Fernet-compatible key, stores it in the OS keychain (`myfitnesspal-mcp-python` / `MFP_SECRET_KEY`), and prints the key so you can use it in Step 2. See [Key Management CLI](#key-management-cli) for all available flags.
 
 **Step 2 — Encrypt your credentials:**
 
@@ -441,7 +441,7 @@ npm install
 
 ```
 ✅ MFP_SECRET_KEY stored in OS keychain
-   service : mfp-mcp
+   service : myfitnesspal-mcp-python
    account : MFP_SECRET_KEY
    source  : generated
 
@@ -469,7 +469,7 @@ myfitnesspal-mcp-python/
 ├── scripts/
 │   └── store-key.ts        # One-time key management CLI
 └── src/
-    └── mfp_mcp/
+    └── mcp_mfp/
         ├── __init__.py     # Package initialization
         └── server.py       # MCP server implementation
 ```
@@ -518,12 +518,12 @@ mypy src/
 
 ```bash
 # Build the image
-docker build -t mfp-mcp .
+docker build -t myfitnesspal-mcp-python .
 
 # Run with Chrome cookies mounted (Linux example)
 docker run -it --rm \
   -v ~/.config/google-chrome:/root/.config/google-chrome:ro \
-  mfp-mcp
+  myfitnesspal-mcp-python
 ```
 
 ## Troubleshooting
@@ -574,7 +574,7 @@ pip install -e .
    foreground and retry so the prompt is visible. Once approved, the key
    is cached and the prompt won't repeat.
 
-### "No module named 'mfp_mcp'"
+### "No module named 'mcp_mfp'"
 
 **Problem**: Package not installed or wrong Python environment.
 
@@ -745,7 +745,7 @@ Get nutrition report over a date range.
 
 ## Security & Privacy
 
-- **Encrypted Credentials**: Credentials can be stored as Fernet-encrypted ciphertext in your config. `MFP_SECRET_KEY` is resolved at runtime from the environment variable first, then the OS keychain (`mfp-mcp` / `MFP_SECRET_KEY`). See [Encrypted Credentials](#encrypted-credentials-enhanced-security) for setup.
+- **Encrypted Credentials**: Credentials can be stored as Fernet-encrypted ciphertext in your config. `MFP_SECRET_KEY` is resolved at runtime from the environment variable first, then the OS keychain (`myfitnesspal-mcp-python` / `MFP_SECRET_KEY`). See [Encrypted Credentials](#encrypted-credentials-enhanced-security) for setup.
 - **OS Keychain**: Storing `MFP_SECRET_KEY` in the native keychain (macOS Keychain, Windows Credential Vault, Linux Secret Service) means the decryption key never touches the config file or any backup.
 - **Plain Credentials**: If `MFP_SECRET_KEY` is absent from both environment and keychain, `MFP_USERNAME` and `MFP_PASSWORD` are used as-is (backward compatible).
 - **Session Cookies**: After successful authentication, session cookies are cached in `~/.mfp_mcp/cookies.json` (restricted permissions) for 30 days.

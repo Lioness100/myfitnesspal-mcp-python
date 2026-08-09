@@ -14,14 +14,14 @@
  *   npm run store-key -- --show        # print the currently stored key
  *
  * Keychain coordinates:
- *   service  : mfp-mcp
+ *   service  : myfitnesspal-mcp-python
  *   account  : MFP_SECRET_KEY
  */
 
 import crypto from 'node:crypto';
 import { execFileSync, spawnSync } from 'node:child_process';
 
-const SERVICE = 'mfp-mcp';
+const SERVICE = 'myfitnesspal-mcp-python';
 const ACCOUNT = 'MFP_SECRET_KEY';
 const PLATFORM = process.platform; // 'darwin' | 'win32' | 'linux'
 
@@ -122,7 +122,7 @@ function keychainSet(key: string): void {
   // service would silently print "stored" and confuse the user.
   const linuxResult = spawnSync(
     'secret-tool',
-    ['store', '--label=mfp-mcp secret key', 'service', SERVICE, 'username', ACCOUNT],
+    ['store', '--label=myfitnesspal-mcp-python secret key', 'service', SERVICE, 'username', ACCOUNT],
     { input: key, stdio: ['pipe', 'inherit', 'inherit'] }
   );
   if (linuxResult.error) {

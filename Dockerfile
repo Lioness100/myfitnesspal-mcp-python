@@ -4,8 +4,8 @@
 # For Docker deployment, you'll need to mount your browser's cookie database
 # or use an alternative authentication method.
 #
-# Build: docker build -t mfp-mcp .
-# Run: docker run -it --rm -v ~/.config/google-chrome:/root/.config/google-chrome:ro mfp-mcp
+# Build: docker build -t myfitnesspal-mcp-python .
+# Run: docker run -it --rm -v ~/.config/google-chrome:/root/.config/google-chrome:ro myfitnesspal-mcp-python
 
 FROM python:3.12-slim
 
@@ -39,4 +39,4 @@ USER mcp
 EXPOSE 8000
 
 # Default command runs the MCP server with stdio transport
-ENTRYPOINT ["python", "-m", "mfp_mcp.server"]
+ENTRYPOINT ["python", "-m", "mcp_mfp.server"]

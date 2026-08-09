@@ -7,7 +7,7 @@ so these run anywhere.
 
 import pytest
 
-from mfp_mcp import server
+from mcp_mfp import server
 
 
 @pytest.fixture
