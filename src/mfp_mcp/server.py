@@ -482,14 +482,14 @@ def looks_like_fernet_token(value: str) -> bool:
     return value.startswith("gAAAAA")
 
 
-KEYRING_SERVICE = "mfp-mcp"
+KEYRING_SERVICE = "myfitnesspal-mcp-python"
 KEYRING_SECRET_KEY_ACCOUNT = "MFP_SECRET_KEY"
 
 
 def get_secret_key() -> Optional[str]:
     """Resolves MFP_SECRET_KEY from, in order:
     1. The MFP_SECRET_KEY environment variable.
-    2. The OS keychain (service: 'mfp-mcp', account: 'MFP_SECRET_KEY').
+    2. The OS keychain (service: 'myfitnesspal-mcp-python', account: 'MFP_SECRET_KEY').
 
     Returns the key string, or None if not found in either location.
     """

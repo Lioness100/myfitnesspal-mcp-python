@@ -1,8 +1,8 @@
 {
-  "name": "mfp-mcp-tools",
+  "name": "myfitnesspal-mcp-python-tools",
   "version": "1.0.0",
   "private": true,
-  "description": "Developer tooling for mfp-mcp — one-time key management CLI.",
+  "description": "Developer tooling for myfitnesspal-mcp-python — one-time key management CLI.",
   "scripts": {
     "store-key": "tsx scripts/store-key.ts"
   },

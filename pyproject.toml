@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mfp-mcp"
+name = "myfitnesspal-mcp-python"
 version = "1.0.0"
 description = "MCP Server for MyFitnessPal - track food diary, exercises, measurements, and nutrition goals"
 readme = "README.md"
@@ -60,7 +60,7 @@ dev = [
 ]
 
 [project.scripts]
-mfp-mcp = "mfp_mcp.server:main"
+myfitnesspal-mcp-python = "mfp_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mfp_mcp"]
