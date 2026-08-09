@@ -39,4 +39,4 @@ USER mcp
 EXPOSE 8000
 
 # Default command runs the MCP server with stdio transport
-ENTRYPOINT ["python", "-m", "mcp_mfp.server"]
+ENTRYPOINT ["python", "-m", "mfp_mcp.server"]

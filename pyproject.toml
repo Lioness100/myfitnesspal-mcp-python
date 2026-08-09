@@ -60,10 +60,10 @@ dev = [
 ]
 
 [project.scripts]
-myfitnesspal-mcp-python = "mcp_mfp.server:main"
+myfitnesspal-mcp-python = "mfp_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mcp_mfp"]
+packages = ["src/mfp_mcp"]
 
 [tool.black]
 line-length = 100

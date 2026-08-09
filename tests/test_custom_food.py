@@ -10,7 +10,7 @@ import json
 
 import pytest
 
-from mcp_mfp import server
+from mfp_mcp import server
 
 
 class _FakeResponse:

@@ -42,7 +42,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.StreamHandler(sys.stderr)],
 )
-logger = logging.getLogger("mcp_mfp")
+logger = logging.getLogger("mfp_mcp")
 
 # Initialize MCP server
 mcp = FastMCP("myfitnesspal_mcp")

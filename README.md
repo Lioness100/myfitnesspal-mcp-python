@@ -116,7 +116,7 @@ After installation, verify the server can start:
 
 ```bash
 # With venv activated
-python -m mcp_mfp.server
+python -m mfp_mcp.server
 ```
 
 You should see the server waiting for input (it communicates via stdio). Press `Ctrl+C` to stop.
@@ -125,7 +125,7 @@ To test authentication (optional):
 
 ```bash
 MFP_USERNAME="your_email" MFP_PASSWORD="your_password" python -c "
-from mcp_mfp.server import get_mfp_client
+from mfp_mcp.server import get_mfp_client
 client = get_mfp_client()
 print('Authentication successful!')
 "
@@ -156,7 +156,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mcp_mfp.server"],
+      "args": ["-m", "mfp_mcp.server"],
       "env": {
         "MFP_USERNAME": "gAAAAAB...<encrypted_email>",
         "MFP_PASSWORD": "gAAAAAB...<encrypted_password>"
@@ -174,7 +174,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mcp_mfp.server"],
+      "args": ["-m", "mfp_mcp.server"],
       "env": {
         "MFP_USERNAME": "your_email@example.com",
         "MFP_PASSWORD": "your_password"
@@ -190,7 +190,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "C:\\Users\\YourName\\myfitnesspal-mcp-python\\venv\\Scripts\\python.exe",
-      "args": ["-m", "mcp_mfp.server"],
+      "args": ["-m", "mfp_mcp.server"],
       "env": {
         "MFP_USERNAME": "your_email@example.com",
         "MFP_PASSWORD": "your_password"
@@ -208,7 +208,7 @@ Encrypt your credentials before storing them in the config file. See [Encrypted 
   "mcpServers": {
     "myfitnesspal": {
       "command": "/Users/yourname/myfitnesspal-mcp-python/venv/bin/python",
-      "args": ["-m", "mcp_mfp.server"]
+      "args": ["-m", "mfp_mcp.server"]
     }
   }
 }
@@ -469,7 +469,7 @@ myfitnesspal-mcp-python/
 ├── scripts/
 │   └── store-key.ts        # One-time key management CLI
 └── src/
-    └── mcp_mfp/
+    └── mfp_mcp/
         ├── __init__.py     # Package initialization
         └── server.py       # MCP server implementation
 ```
@@ -574,7 +574,7 @@ pip install -e .
    foreground and retry so the prompt is visible. Once approved, the key
    is cached and the prompt won't repeat.
 
-### "No module named 'mcp_mfp'"
+### "No module named 'mfp_mcp'"
 
 **Problem**: Package not installed or wrong Python environment.
 
